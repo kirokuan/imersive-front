@@ -2,25 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const WideButton = styled.button`
+const Main = styled.div`
+padding: 100px;
+`;
+const WideButton = styled.span`
  margin: 10px;
  font-size: 20px;
 `;
 
-// login() {
-//     this.props.history.push({ pathname: `login` });
-// }
-// register() {
-//     this.props.history.push({ pathname: `register` });
-//  }
-// <WideButton className="btn btn-primary" >Login </WideButton>
-//        <WideButton className="btn btn-primary">Register</WideButton>
 const App = () =>
-    <div className="container">
-        <Link to="/public/register" className="btn btn-primary">Register</Link>
-        <Link to="/public/login" className="btn btn-primary">Login</Link>
-
-    </div>;
+    <Main className="container">
+        <WideButton>
+            <Link to="/public/register" className="btn btn-primary">Register</Link>
+        </WideButton>
+        <WideButton>
+            <Link to="/public/login" className="btn btn-primary">Login</Link>
+        </WideButton>
+    </Main>;
 
 
 export default App;

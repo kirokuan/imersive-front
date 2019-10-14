@@ -7,14 +7,13 @@ import DevTools from '../containers/DevTools';
 
 export const history = createHistory();
 const middleware = routerMiddleware(history);
-const allMiddleware = applyMiddleware(apiMiddleware);
+const allMiddleware = applyMiddleware(middleware, apiMiddleware);
 export function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
-        allMiddleware,
         compose(
-            applyMiddleware(middleware),
+            allMiddleware,
             DevTools.instrument()
         )
     );

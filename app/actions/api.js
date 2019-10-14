@@ -1,4 +1,4 @@
-import { CALL_API } from 'redux-api-middleware';
+import { RSAA } from 'redux-api-middleware';
 const jsonHeader = { 'Content-Type': 'application/json' };
 const baseUrl = "/";
 const defaultPostReq = {
@@ -37,8 +37,8 @@ class ApiActionGenerator {
             {
                 type: this.req(),
                 payload: (action, state) => {
-                    params = this.parseUrl(action[CALL_API]);
-                    return { ...action[CALL_API], params };
+                    params = this.parseUrl(action[RSAA]);
+                    return { ...action[RSAA], params };
                 }
             },
             {
@@ -74,7 +74,7 @@ class ApiActionGenerator {
 
 export const LoginActions = new ApiActionGenerator("Login");
 export const loginApi = (user, password) => ({
-    [CALL_API]: Object.assign(defaultPostReq, {
+    [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}login`,
         types: LoginActions.getNames(),
         body: JSON.stringify({
@@ -85,7 +85,7 @@ export const loginApi = (user, password) => ({
 
 export const RegisterActions = new ApiActionGenerator("Register");
 export const registerApi = (user, password) => ({
-    [CALL_API]: Object.assign(defaultPostReq, {
+    [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}register`,
         types: LoginActions.getNames(),
         body: JSON.stringify({

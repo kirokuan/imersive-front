@@ -7,6 +7,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import App from '../components/App';
 import RegisterForm from '../components/RegisterForm';
 import DevTools from './DevTools';
+import Dashbaord from '../components/Dashbaord';
 
 export default function Root({ store, history }) {
     return (
@@ -14,8 +15,9 @@ export default function Root({ store, history }) {
             <div>
                 <ConnectedRouter history={history}>
                     <Switch>
-                        <Route path="/public/login" component={App} />
+                        <Route path="/public/login" render={(props) => <RegisterForm {...props} login={true} />} />
                         <Route path="/public/register" component={RegisterForm} />
+                        <Route path="/dashboard" component={Dashbaord} />
                         <Route exact path="/" component={App} />
                     </Switch>
                 </ConnectedRouter>
