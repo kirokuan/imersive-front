@@ -43,15 +43,17 @@ class RegisterForm extends React.Component {
             this.state.error.push(alertStr);
         }
     }
-
+    isLogin() {
+        return this.props.login;
+    }
     validate = (e) => {
         this.setState({ error: [] }, () => {
-            this.checkCondition(() => !this.props.login && this.state.password !== this.state.password_r, "passwords are not matched.");
+            this.checkCondition(() => !this.isLogin() && this.state.password !== this.state.password_r, "passwords are not matched.");
             this.checkCondition(() => this.state.username.length < UsernameLengthLimit, "username length should be greater than 5");
             this.checkCondition(() => this.state.password.length < PasswordLengthLimit, "password length should be greater than 5");
 
             if (this.state.error.length === 0) {
-                if (this.login) {
+                if (this.isLogin()) {
                     this.props.onLogin(this.state.username, this.state.password);
                 } else {
                     this.props.onRegister(this.state.username, this.state.password);
@@ -65,11 +67,11 @@ class RegisterForm extends React.Component {
     render() {
         return (
             <Main className="container">
-                {!this.props.login && <h5>Register</h5>}
-                {this.props.login && <h5>Login</h5>}
+                {!this.isLogin() && <h5>Register</h5>}
+                {this.isLogin() && <h5>Login</h5>}
 
                 {this.props.isLoading && <div className="alert alert-info"> <i className="fa fa-circle-o-notch fa-spin"></i> <strong>Loading...</strong></div>}
-                {this.state.error && <div className="alert alert-info"><ul>{this.state.error.map(e => <li>{e}</li>)}</ul></div>}
+                {this.state.error && this.state.error.length > 0 && <div className="alert alert-info"><ul>{this.state.error.map(e => <li>{e}</li>)}</ul></div>}
                 {!this.props.isLoading &&
                     <div>
                         <form>
@@ -83,7 +85,7 @@ class RegisterForm extends React.Component {
                                 <label>Password</label>
                                 <input type="password" className="form-control" placeholder="Password" onChange={this.changeInput("password").bind(this)} />
                             </div>
-                            {!this.props.login && <div className="form-group">
+                            {!this.isLogin() && <div className="form-group">
                                 <label>Repeat Password</label>
                                 <input type="password" className="form-control" placeholder="Repeat Password" onChange={this.changeInput("password_r").bind(this)} />
                             </div>}
