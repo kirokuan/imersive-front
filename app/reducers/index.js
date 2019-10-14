@@ -1,4 +1,4 @@
-import { routerReducer as routing } from 'react-router-redux';
+
 import { combineReducers } from 'redux';
 import { LoginActions, RegisterActions } from '../actions/api';
 import Auth from '../utils/Auth';

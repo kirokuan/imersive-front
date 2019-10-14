@@ -85,9 +85,17 @@ export const RegisterActions = new ApiActionGenerator("Register");
 export const registerApi = (username, password) => ({
     [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}register`,
-        types: LoginActions.getNames(),
+        types: RegisterActions.getNames(),
         body: JSON.stringify({
             username, password
         })
+    })
+});
+
+export const LogoutActions = new ApiActionGenerator("Logout");
+export const logoutApi = () => ({
+    [RSAA]: Object.assign(defaultPostReq, {
+        endpoint: `${baseUrl}logout`,
+        types: LoginActions.getNames()
     })
 });
