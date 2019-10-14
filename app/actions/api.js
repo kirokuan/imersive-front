@@ -4,8 +4,7 @@ const jsonHeader = { 'Content-Type': 'application/json' };
 const baseUrl = "/";
 const defaultPostReq = {
     method: "POST",
-    headers: jsonHeader,
-    credentials: "include"
+    headers: jsonHeader
 };
 
 
@@ -74,6 +73,7 @@ export const LoginActions = new ApiActionGenerator("Login");
 export const loginApi = (username, password) => ({
     [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}login`,
+        credentials: 'omit',
         types: LoginActions.getNames(),
         body: JSON.stringify({
             username, password
@@ -85,6 +85,7 @@ export const RegisterActions = new ApiActionGenerator("Register");
 export const registerApi = (username, password) => ({
     [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}register`,
+        credentials: 'omit',
         types: RegisterActions.getNames(),
         body: JSON.stringify({
             username, password
