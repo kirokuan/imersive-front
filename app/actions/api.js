@@ -7,10 +7,6 @@ const defaultPostReq = {
     credentials: "include"
 };
 
-const defaultGetReq = {
-    method: "GET",
-    credentials: "include"
-};
 
 const onApiLogout = () => {
     window.location.href = "/";
@@ -73,23 +69,23 @@ class ApiActionGenerator {
 
 
 export const LoginActions = new ApiActionGenerator("Login");
-export const loginApi = (user, password) => ({
+export const loginApi = (username, password) => ({
     [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}login`,
         types: LoginActions.getNames(),
         body: JSON.stringify({
-            user, password
+            username, password
         })
     })
 });
 
 export const RegisterActions = new ApiActionGenerator("Register");
-export const registerApi = (user, password) => ({
+export const registerApi = (username, password) => ({
     [RSAA]: Object.assign(defaultPostReq, {
         endpoint: `${baseUrl}register`,
         types: LoginActions.getNames(),
         body: JSON.stringify({
-            user, password
+            username, password
         })
     })
 });
