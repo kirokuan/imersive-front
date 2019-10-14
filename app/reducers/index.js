@@ -4,7 +4,6 @@ import { LoginActions, RegisterActions } from '../actions/api';
 import Auth from '../utils/Auth';
 
 const login = (state = { username: null }, action) => {
-    console.log(action);
     switch (action.type) {
         case LoginActions.req():
             return { ...state, isLoading: true };

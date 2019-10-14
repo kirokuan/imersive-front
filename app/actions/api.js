@@ -1,4 +1,5 @@
 import { RSAA } from 'redux-api-middleware';
+import Auth from '../utils/Auth';
 const jsonHeader = { 'Content-Type': 'application/json' };
 const baseUrl = "/";
 const defaultPostReq = {
@@ -10,6 +11,7 @@ const defaultPostReq = {
 
 const onApiLogout = () => {
     window.location.href = "/";
+    Auth.clear();
 };
 class ApiActionGenerator {
     constructor(name) {
